@@ -26,6 +26,8 @@ def write_to_postgres(df, table_name):
         .option("user", "admin") \
         .option("password", "adminpassword") \
         .option("driver", "org.postgresql.Driver") \
+        .option("truncate", "true") \
+        .option("cascadeTruncate", "true") \
         .mode("overwrite") \
         .save()
 
