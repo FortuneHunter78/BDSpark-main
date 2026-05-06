@@ -34,11 +34,15 @@
 
 1. Откройте Jupyter Lab по адресу `http://localhost:8888` (используйте токен из логов).
 2. Запустите терминал внутри Jupyter Lab (File -> New -> Terminal).
-3. Запустите ETL для схемы "звезды" (PostgreSQL):
+3. Перейдите в папку рабочую папку work
+   ```bash
+   cd work
+   ```
+4. Запустите ETL для схемы "звезды" (PostgreSQL):
    ```bash
    spark-submit --packages org.postgresql:postgresql:42.6.0 ETL_Postgres_StarSchema.py
    ```
-4. Запустите ETL для построения отчетов (ClickHouse):
+5. Запустите ETL для построения отчетов (ClickHouse):
    ```bash
    spark-submit --packages org.postgresql:postgresql:42.6.0,com.clickhouse:clickhouse-jdbc:0.4.6 ETL_ClickHouse_Reports.py
    ```
