@@ -1,0 +1,49 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: bdspark-postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: adminpassword
+      POSTGRES_DB: bdspark
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./scripts:/docker-entrypoint-initdb.d
+      - ./data:/var/lib/postgresql/data_csv
+    networks:
+      - bdspark-network
+
+  clickhouse:
+    image: clickhouse/clickhouse-server:latest
+    container_name: bdspark-clickhouse
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    environment:
+      CLICKHOUSE_USER: default
+      CLICKHOUSE_PASSWORD: defaultpassword
+      CLICKHOUSE_DB: bdspark
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+    networks:
+      - bdspark-network
+
+  jupyter-pyspark:
+    image: jupyter/pyspark-notebook:latest
+    container_name: bdspark-jupyter
+    ports:
+      - "8888:8888"
+      - "4040:4040"
+    environment:
+      JUPYTER_ENABLE_LAB: "yes"
+    volumes:
+      - ./:/home/jovyan/work
+    networks:
+      - bdspark-network
+
+networks:
+  bdspark-network:
+    driver: bridge
