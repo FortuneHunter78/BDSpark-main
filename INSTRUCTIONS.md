@@ -17,8 +17,8 @@
    ```
 
 3. Доступность сервисов:
-   - **PostgreSQL**: `localhost:5432` (Пользователь: `admin`, Пароль: `adminpassword`, БД: `bdspark`)
-   - **ClickHouse**: `localhost:8123` и `9000` (Пользователь: `default`, Пароль: `defaultpassword`, БД: `bdspark`)
+   - **PostgreSQL**: `localhost:5433` (Порт: `5433`, Пользователь: `admin`, Пароль: `adminpassword`, БД: `bdspark`)
+   - **ClickHouse**: `localhost:8123` и `9000` (Порт: `8123`, Пользователь: `default`, Пароль: `defaultpassword`, БД: `bdspark`)
    - **Jupyter Notebook (PySpark)**: `http://localhost:8888` (Токен можно найти в логах: `docker logs bdspark-jupyter`)
 
 При первом запуске база данных PostgreSQL автоматически инициализирует схемы и загрузит тестовые данные из директории с CSV файлами.
